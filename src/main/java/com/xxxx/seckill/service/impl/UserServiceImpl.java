@@ -73,6 +73,7 @@ public class UserServiceImpl implements IUserService {
 		}
 		//生成cookie
 		String ticket = UUIDUtil.uuid();
+		request.getSession().setAttribute(ticket,user);
 		//将用户信息存入redis中
 		try {
 			redisTemplate.opsForValue().set("user:" + ticket, user);
